@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e85b730d81a54aebbc1eb0168473323, type: 3}
+  m_Name: Rock
+  m_EditorClassIdentifier: 
+  footstepSounds:
+  - {fileID: 8300000, guid: 0a93bd63dd5794584a9c050ec8998296, type: 3}
+  - {fileID: 8300000, guid: 9b30c7d11810d4e7ea590199f2c81dfe, type: 3}
+  - {fileID: 8300000, guid: 45fa3ba242f6b40759015247f7b981f7, type: 3}
+  - {fileID: 8300000, guid: f3949449bd1fd4da38f5f7941b1e4cfc, type: 3}
+  - {fileID: 8300000, guid: 5ffdfb92764d5494b87d67af81c4d441, type: 3}
+  landSounds:
+  - {fileID: 8300000, guid: 8989325f3660642c4ac08d4e6e3a8539, type: 3}
+  - {fileID: 8300000, guid: dd0d6a9a4258b4dc48cb7fd0dcaef98c, type: 3}

@@ -1,0 +1,24 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e85b730d81a54aebbc1eb0168473323, type: 3}
+  m_Name: Carrots
+  m_EditorClassIdentifier: 
+  footstepSounds:
+  - {fileID: 8300000, guid: af33d6d10f37140858e7ca70b3ffa7c4, type: 3}
+  - {fileID: 8300000, guid: 4969fd87978d84a4f92e0a9116d6cfc3, type: 3}
+  - {fileID: 8300000, guid: b67116abe144746abac02180b3398531, type: 3}
+  - {fileID: 8300000, guid: b9a68127cad524fbcb2b9ae93a77ea45, type: 3}
+  - {fileID: 8300000, guid: 5e416df90c34f44f3a31442cd71bb0cc, type: 3}
+  - {fileID: 8300000, guid: 0dd5232eed160468488b391552dda43e, type: 3}
+  landSounds:
+  - {fileID: 8300000, guid: ccac7d52c080048c6a11f7f2b0dd1350, type: 3}
+  - {fileID: 8300000, guid: 8bb6f8e4e27a64186b13cdafb501a7ef, type: 3}
