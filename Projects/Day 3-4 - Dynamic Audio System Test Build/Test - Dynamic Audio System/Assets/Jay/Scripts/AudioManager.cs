@@ -8,7 +8,6 @@ public class AudioManager : MonoBehaviour
     void Start()
     {
         Debug.Log("AudioManager initialized");
-        
     }
 
 
@@ -16,5 +15,15 @@ public class AudioManager : MonoBehaviour
     void Update()
     {
         
+    }
+
+    //====================================================================================================
+    // Audio Helper Functions
+    //====================================================================================================
+    private void randomizePitch(AudioSource audioSource, float pitchRange)
+    {
+        float sourcePitch = audioSource.pitch;
+        float randomPitch = Random.Range(sourcePitch - pitchRange, sourcePitch + pitchRange);
+        audioSource.pitch = randomPitch;
     }
 }
