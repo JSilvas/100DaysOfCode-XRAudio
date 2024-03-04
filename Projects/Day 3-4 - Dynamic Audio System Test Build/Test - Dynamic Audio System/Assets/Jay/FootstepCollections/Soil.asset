@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 9e85b730d81a54aebbc1eb0168473323, type: 3}
-  m_Name: Dirt
+  m_Name: Soil
   m_EditorClassIdentifier: 
   footstepSounds:
   - {fileID: 8300000, guid: dca8b7c2466ee4a0aa62c408d0c6c406, type: 3}

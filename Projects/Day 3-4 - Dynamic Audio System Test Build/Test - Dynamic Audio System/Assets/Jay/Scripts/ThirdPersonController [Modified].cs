@@ -1,4 +1,4 @@
-﻿ using UnityEngine;
+﻿using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -29,7 +29,7 @@ namespace StarterAssets
         [Tooltip("Acceleration and deceleration")]
         public float SpeedChangeRate = 10.0f;
 
-        public AudioClip LandingAudioClip;
+        public AudioClip LandingAudioClip; // change to List to support multiple landing sounds in collections
         public List<AudioClip> FootstepAudioClips = new List<AudioClip>(); // Changed from Footstep array to list<AudioClip>
         [Range(0, 1)] public float FootstepAudioVolume = 0.5f;
 
@@ -75,6 +75,24 @@ namespace StarterAssets
 
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
+
+        // [Tooltip("TEST THE THINGS")]
+        // public bool SwapMeet = true;
+
+        public void SwapFootsteps(FootstepCollection collection) // Added to change between footstep sound collections
+        {
+            // Clear current footstep sounds
+            FootstepAudioClips.Clear();
+            LandingAudioClip = null;
+
+            // Add new footstep sounds from the collection 
+            for (int i = 0; i < collection.footstepSounds.Count; i++)
+            {
+                FootstepAudioClips.Add(collection.footstepSounds[i]);
+            }
+            // JumpAudioClip = collection.jumpSounds;
+            LandingAudioClip = collection.landSounds[0];
+        }
 
         // cinemachine
         private float _cinemachineTargetYaw;
@@ -123,7 +141,6 @@ namespace StarterAssets
             }
         }
 
-
         private void Awake()
         {
             // get a reference to our main camera
@@ -133,13 +150,20 @@ namespace StarterAssets
             }
         }
 
+        private FootstepSwapper swapper; // Added reference for new footstep swapper
+
         private void Start()
-        {
-            _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
+        {   
+            // FootstepCollection collection = new FootstepCollection();
+            // SwapFootsteps(collection); // Added  to set default footstep sounds
+
             
+            _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
+
             _hasAnimator = TryGetComponent(out _animator);
             _controller = GetComponent<CharacterController>();
             _input = GetComponent<StarterAssetsInputs>();
+
 #if ENABLE_INPUT_SYSTEM 
             _playerInput = GetComponent<PlayerInput>();
 #else
@@ -151,6 +175,9 @@ namespace StarterAssets
             // reset our timeouts on start
             _jumpTimeoutDelta = JumpTimeout;
             _fallTimeoutDelta = FallTimeout;
+
+            swapper = GetComponent<FootstepSwapper>(); // Added for new footstep system
+            swapper.CheckLayers(); // Added to check for terrain layers sounds
         }
 
         private void Update()
@@ -372,6 +399,7 @@ namespace StarterAssets
 
         private void OnFootstep(AnimationEvent animationEvent)
         {
+            swapper.CheckLayers(); // Added to check for terrain layers sounds
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
                 if (FootstepAudioClips.Count > 0) // Changed to .Count from .Length to match list type
@@ -384,10 +412,17 @@ namespace StarterAssets
 
         private void OnLand(AnimationEvent animationEvent)
         {
+            swapper.CheckLayers(); // Added to check for terrain layers sounds
             if (animationEvent.animatorClipInfo.weight > 0.5f)
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
         }
+
+        // public override int GetHashCode()
+        // {
+        //     return m_InstanceID;
+        // }
+
     }
 }

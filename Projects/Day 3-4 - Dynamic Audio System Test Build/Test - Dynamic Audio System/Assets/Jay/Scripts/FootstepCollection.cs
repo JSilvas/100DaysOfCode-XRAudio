@@ -6,8 +6,8 @@ using UnityEngine;
 public class FootstepCollection : ScriptableObject
 {
     public List<AudioClip> footstepSounds = new List<AudioClip>();
-    // public List<AudioClip> jumpSounds = new List<AudioClip>();
     public List<AudioClip> landSounds = new List<AudioClip>();
+    // public List<AudioClip> jumpSounds = new List<AudioClip>();
     // public List<AudioClip> fallSounds = new List<AudioClip>();
     // public List<AudioClip> hurtSounds = new List<AudioClip>();
     // public List<AudioClip> deathSounds = new List<AudioClip>();
