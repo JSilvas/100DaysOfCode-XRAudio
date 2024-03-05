@@ -19,5 +19,6 @@ MonoBehaviour:
   - {fileID: 8300000, guid: a92930086ea79403c90403c5bdd6aade, type: 3}
   - {fileID: 8300000, guid: 40918818e67004b52867c2645fe72a11, type: 3}
   landSounds:
+  - {fileID: 8300000, guid: f8d6cb27ba17640da92b6a203eee36d4, type: 3}
   - {fileID: 8300000, guid: e55b5309524144da59889495fffab593, type: 3}
   - {fileID: 8300000, guid: 9783edec31c894cdba497d9ad06a1921, type: 3}

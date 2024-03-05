@@ -78,6 +78,10 @@ namespace StarterAssets
 
         // [Tooltip("TEST THE THINGS")]
         // public bool SwapMeet = true;
+        public void SwapMeet()
+        {
+            Debug.Log("SwapMeet() initialized");
+        }
 
         public void SwapFootsteps(FootstepCollection collection) // Added to change between footstep sound collections
         {
@@ -150,12 +154,10 @@ namespace StarterAssets
             }
         }
 
-        private FootstepSwapper swapper; // Added reference for new footstep swapper
+        private FootstepSwapper swapper; // Create footstep swapper reference
 
         private void Start()
         {   
-            // FootstepCollection collection = new FootstepCollection();
-            // SwapFootsteps(collection); // Added  to set default footstep sounds
 
             
             _cinemachineTargetYaw = CinemachineCameraTarget.transform.rotation.eulerAngles.y;
@@ -177,7 +179,7 @@ namespace StarterAssets
             _fallTimeoutDelta = FallTimeout;
 
             swapper = GetComponent<FootstepSwapper>(); // Added for new footstep system
-            swapper.CheckLayers(); // Added to check for terrain layers sounds
+            swapper.CheckLayers(); // Added to Raytrace check for terrain layers
         }
 
         private void Update()
@@ -418,11 +420,5 @@ namespace StarterAssets
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
             }
         }
-
-        // public override int GetHashCode()
-        // {
-        //     return m_InstanceID;
-        // }
-
     }
 }

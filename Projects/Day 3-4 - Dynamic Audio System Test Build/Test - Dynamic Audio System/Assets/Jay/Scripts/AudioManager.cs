@@ -20,10 +20,23 @@ public class AudioManager : MonoBehaviour
     //====================================================================================================
     // Audio Helper Functions
     //====================================================================================================
-    private void randomizePitch(AudioSource audioSource, float pitchRange)
+    public void randomizePitch(AudioSource audioSource, float pitchRange)
     {
         float sourcePitch = audioSource.pitch;
         float randomPitch = Random.Range(sourcePitch - pitchRange, sourcePitch + pitchRange);
         audioSource.pitch = randomPitch;
+    }
+
+    public void randomizeVolume(AudioSource audioSource, float volumeRange)
+    {
+        float sourceVolume = audioSource.volume;
+        float randomVolume = Random.Range(sourceVolume - volumeRange, sourceVolume + volumeRange);
+        audioSource.volume = randomVolume;
+    }
+
+    public void playRandomSound(AudioSource audioSource, AudioClip[] audioClips)
+    {
+        audioSource.clip = audioClips[Random.Range(0, audioClips.Length)];
+        audioSource.Play();
     }
 }

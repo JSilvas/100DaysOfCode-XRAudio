@@ -1,10 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using StarterAssets;
-using TMPro.EditorUtilities;
-using UnityEngine.TextCore.Text;
-using System;
+using Unity.VisualScripting;
 
 public class FootstepSwapper : MonoBehaviour
 {
@@ -20,7 +16,6 @@ public class FootstepSwapper : MonoBehaviour
         currentLayer = "foobarbaz";
     }
 
-    // Update is called once per frame
     public void CheckLayers()
     {
         // Debug.Log("CheckLayers() initialized");
@@ -29,21 +24,20 @@ public class FootstepSwapper : MonoBehaviour
         RaycastHit hit;
         // Debug.Log("Raycast initialized");
 
-        bool RayCastReport = Physics.Raycast(transform.position, Vector3.down, out hit, 3);
+        // Added to address raycast protruding from character through terrain and failing
+        float offset = 0.1f; // Adjust this value to tune ground detection
+        Vector3 rayOrigin = transform.position + new Vector3(0, offset, 0);
+        bool RayCastReport = Physics.Raycast(rayOrigin, Vector3.down, out hit, 1);
         
-        // Debug.Log("Raycast bool: " + RayCastReport);
         if (RayCastReport)
         {
-            
+            // Debug.Log("Raycast hit: " + hit.transform.GetComponent<Terrain>());
             
             // check if terrain exists
             if (hit.transform.GetComponent<Terrain>()!= null)
             {
                 Terrain t = hit.transform.GetComponent<Terrain>();
-                
-                // Debug terrain raycasting                
-                string rayHitsTest = t.terrainData.terrainLayers[1].ToString();
-                Debug.Log("Raycast hit: " + rayHitsTest);
+                // Debug.Log("Raycast hit: " + t);
 
                 // if layer does not matches currentLayer
                 if (currentLayer != checker.GetLayerName(transform.position, t))
@@ -52,7 +46,7 @@ public class FootstepSwapper : MonoBehaviour
                     
                     // Debug Current Layer
                     string terrainTest = currentLayer.ToString();
-                    Debug.Log("Current Terrain: " + terrainTest);
+                    Debug.Log("New Terrain Layer: " + terrainTest);
 
                     // swap footsteps collection
                     foreach (FootstepCollection collection in terrainFootstepCollections)
@@ -63,7 +57,7 @@ public class FootstepSwapper : MonoBehaviour
                             tpc.SwapFootsteps(collection);
                         }
                     }
-                } 
+                }
             }
             if (hit.transform.GetComponent<SurfaceType>() != null)
             {
@@ -71,6 +65,10 @@ public class FootstepSwapper : MonoBehaviour
                 currentLayer = collection.name;
                 tpc.SwapFootsteps(collection);
             }
+        }
+        else
+        {
+            Debug.Log("Raycast did not hit any collider");
         }
     }
 }

@@ -40,6 +40,7 @@ public class TerrainChecker
                 strongest = cellMix[i];
             }
         }
+        Debug.Log("Terrain Layer: " + t.terrainData.terrainLayers[maxIndex].name);
         return t.terrainData.terrainLayers[maxIndex].name;
     }
 }
