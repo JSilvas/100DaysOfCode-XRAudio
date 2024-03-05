@@ -1,42 +1,51 @@
-using System.Collections;
-using System.Collections.Generic;
+using UnityEngine.Audio;
+using System;
 using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    public Sound[] sounds;
+
+    void Awake()
     {
         Debug.Log("AudioManager initialized");
-    }
-
-
-    // Update is called once per frame
-    void Update()
-    {
         
+        foreach (Sound s in sounds)
+        {
+            s.source = gameObject.AddComponent<AudioSource>();
+            s.source.clip = s.clip;
+            
+            s.source.volume = s.volume;
+            s.source.pitch = s.pitch;
+        }
     }
+
+    // public void Play(string name)
+    // {
+    //     sounds s = Array.Find(sounds, sound => sound.name == name);
+    //     s.source.Play();
+    // }
 
     //====================================================================================================
     // Audio Helper Functions
     //====================================================================================================
-    public void randomizePitch(AudioSource audioSource, float pitchRange)
-    {
-        float sourcePitch = audioSource.pitch;
-        float randomPitch = Random.Range(sourcePitch - pitchRange, sourcePitch + pitchRange);
-        audioSource.pitch = randomPitch;
-    }
+    
+    // function to player random audio clip from array
+    
+    // function to randomize volume of audio source
+    
+    // function to randomize pitch of audio source
 
-    public void randomizeVolume(AudioSource audioSource, float volumeRange)
-    {
-        float sourceVolume = audioSource.volume;
-        float randomVolume = Random.Range(sourceVolume - volumeRange, sourceVolume + volumeRange);
-        audioSource.volume = randomVolume;
-    }
+    
+    // ====================================================================================================
+    // Audio Reporting
+    // ====================================================================================================
+    // function to report audio source status
+    // {
+    //     action: jump,
+    //     surface: snow,
+    //     pitch: 1.1,
+    //     gain: 0.9,
+    // }
 
-    public void playRandomSound(AudioSource audioSource, AudioClip[] audioClips)
-    {
-        audioSource.clip = audioClips[Random.Range(0, audioClips.Length)];
-        audioSource.Play();
-    }
 }

@@ -32,7 +32,6 @@ public class FootstepSwapper : MonoBehaviour
         if (RayCastReport)
         {
             // Debug.Log("Raycast hit: " + hit.transform.GetComponent<Terrain>());
-            
             // check if terrain exists
             if (hit.transform.GetComponent<Terrain>()!= null)
             {

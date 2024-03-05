@@ -415,9 +415,10 @@ namespace StarterAssets
         private void OnLand(AnimationEvent animationEvent)
         {
             swapper.CheckLayers(); // Added to check for terrain layers sounds
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
+            if (animationEvent.animatorClipInfo.weight > 0.3f)
             {
                 AudioSource.PlayClipAtPoint(LandingAudioClip, transform.TransformPoint(_controller.center), FootstepAudioVolume);
+                // FindObjectOfType<AudioManager>().Play("Landing");
             }
         }
     }
