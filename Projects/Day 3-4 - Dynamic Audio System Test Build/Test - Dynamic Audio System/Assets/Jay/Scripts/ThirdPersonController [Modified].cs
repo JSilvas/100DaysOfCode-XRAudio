@@ -76,13 +76,6 @@ namespace StarterAssets
         [Tooltip("For locking the camera position on all axis")]
         public bool LockCameraPosition = false;
 
-        // [Tooltip("TEST THE THINGS")]
-        // public bool SwapMeet = true;
-        public void SwapMeet()
-        {
-            Debug.Log("SwapMeet() initialized");
-        }
-
         public void SwapFootsteps(FootstepCollection collection) // Added to change between footstep sound collections
         {
             // Clear current footstep sounds
@@ -94,7 +87,6 @@ namespace StarterAssets
             {
                 FootstepAudioClips.Add(collection.footstepSounds[i]);
             }
-            // JumpAudioClip = collection.jumpSounds;
             LandingAudioClip = collection.landSounds[0];
         }
 
@@ -402,7 +394,7 @@ namespace StarterAssets
         private void OnFootstep(AnimationEvent animationEvent)
         {
             swapper.CheckLayers(); // Added to check for terrain layers sounds
-            if (animationEvent.animatorClipInfo.weight > 0.5f)
+            if (animationEvent.animatorClipInfo.weight > 0.3f)
             {
                 if (FootstepAudioClips.Count > 0) // Changed to .Count from .Length to match list type
                 {
